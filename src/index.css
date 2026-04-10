@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Marca: verde + roxo (paleta solicitada) + neutros branco/preto/cinza #F5F5F5 */
+  --font-family-sans: 'Outfit', system-ui, sans-serif;
+  --font-family-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+  /* Verde principal #2E7D32 · claro #A5D6A7 + escala derivada (apenas verde) */
+  --color-qd-green-50: #e8f5e9;
+  --color-qd-green-100: #c8e6c9;
+  --color-qd-green-200: #a5d6a7;
+  --color-qd-green-300: #81c784;
+  --color-qd-green-400: #66bb6a;
+  --color-qd-green-500: #43a047;
+  --color-qd-green-600: #2e7d32;
+  --color-qd-green-700: #1b5e20;
+  --color-qd-green-800: #145214;
+  --color-qd-green-900: #0d3d12;
+
+  /* Roxo principal #6A1B9A · claro #CE93D8 + escala derivada (apenas roxo) */
+  --color-qd-purple-50: #f3e5f5;
+  --color-qd-purple-100: #e1bee7;
+  --color-qd-purple-200: #ce93d8;
+  --color-qd-purple-300: #ba68c8;
+  --color-qd-purple-400: #ab47bc;
+  --color-qd-purple-500: #9c27b0;
+  --color-qd-purple-600: #8e24aa;
+  --color-qd-purple-700: #6a1b9a;
+  --color-qd-purple-800: #4a148c;
+  --color-qd-purple-900: #38006b;
+
+  --color-qd-white: #ffffff;
+  --color-qd-fog: #f5f5f5;
+  --color-qd-mist: #eeeeee;
+  --color-qd-ink: #212121;
+  --color-qd-muted: #616161;
+  --color-qd-canvas: #f5f5f5;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    color: var(--color-qd-ink);
+    background-color: var(--color-qd-canvas);
+    background-image:
+      radial-gradient(
+        ellipse 120% 80% at 50% -30%,
+        color-mix(in srgb, var(--color-qd-green-200) 35%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 90% 60% at 100% 20%,
+        color-mix(in srgb, var(--color-qd-purple-200) 22%, transparent),
+        transparent 50%
+      ),
+      /* textura “papel/grão” (fazenda) — apenas neutros */
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--color-qd-ink) 5%, transparent) 0px,
+        transparent 1px,
+        transparent 6px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-qd-ink) 4%, transparent) 0px,
+        transparent 1px,
+        transparent 9px
+      );
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-qd-purple-200) 55%, transparent);
+    color: var(--color-qd-ink);
+  }
+}
+
+@utility text-gradient-brand {
+  background: linear-gradient(
+    115deg,
+    var(--color-qd-green-600) 0%,
+    var(--color-qd-green-500) 35%,
+    var(--color-qd-purple-700) 72%,
+    var(--color-qd-purple-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@layer utilities {
+  /* Fundo “papel” de feira: leve, orgânico, sem poluir */
+  .qd-farm-paper {
+    background-color: var(--color-qd-white);
+    background-image:
+      radial-gradient(
+        circle at 12% 18%,
+        color-mix(in srgb, var(--color-qd-green-100) 55%, transparent),
+        transparent 48%
+      ),
+      radial-gradient(
+        circle at 88% 12%,
+        color-mix(in srgb, var(--color-qd-purple-100) 45%, transparent),
+        transparent 52%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--color-qd-ink) 4%, transparent) 0px,
+        transparent 1px,
+        transparent 7px
+      );
+  }
+
+  /* “Costura” rural: borda pontilhada/dash para cards/headers */
+  .qd-stitch {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: color-mix(in srgb, var(--color-qd-ink) 12%, transparent);
+  }
+
+  /* Card com presença “hortifruti”: papel + leve relevo */
+  .qd-card-farm {
+    background-image:
+      radial-gradient(
+        circle at 20% 15%,
+        color-mix(in srgb, var(--color-qd-green-100) 40%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 80% 85%,
+        color-mix(in srgb, var(--color-qd-purple-100) 32%, transparent),
+        transparent 60%
+      );
+  }
+
+  /* Pequeno “grão” para overlays (hero/cta) */
+  .qd-grain {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--color-qd-white) 9%, transparent) 0px,
+        transparent 1px,
+        transparent 6px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-qd-ink) 6%, transparent) 0px,
+        transparent 1px,
+        transparent 10px
+      );
+    mix-blend-mode: overlay;
+    opacity: 0.22;
+  }
+}
+
+/* Pontos do mapa de distribuição — só opacity, sem anel “radar” */
+@keyframes qd-map-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.qd-map-dot-pulse {
+  animation: qd-map-dot-pulse 3.2s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qd-map-dot-pulse {
+    animation: none;
+    opacity: 1;
+  }
+}
