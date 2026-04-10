@@ -1,4 +1,22 @@
-# React + TypeScript + Vite
+# Q Delícia Frutas — site (Vite + React)
+
+## Publicar no GitHub Pages
+
+1. Crie o repositório no GitHub e faça push da branch `main` (com `.github/workflows/deploy-github-pages.yml`).
+2. No repositório: **Settings → Pages → Build and deployment**.
+3. Em **Source**, escolha **GitHub Actions** (não “Deploy from a branch”).
+4. O workflow **Deploy GitHub Pages** corre no push para `main`. Quando terminar, o site fica em  
+   `https://<seu-usuario>.github.io/<nome-do-repo>/`.
+
+O Vite usa `base` automático a partir de `GITHUB_REPOSITORY` no CI. Repositório `username.github.io` usa `base: /` na raiz do domínio.
+
+Build local com o mesmo `base` que no GitHub:  
+`GITHUB_REPOSITORY=seu-usuario/nome-do-repo npm run build`  
+depois `npx vite preview` para testar.
+
+---
+
+## React + TypeScript + Vite (template)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

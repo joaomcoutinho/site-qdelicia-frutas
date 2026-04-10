@@ -93,20 +93,20 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-qd-purple-700 underline-offset-2 hover:text-qd-green-700 hover:underline"
-                  href="/#distribuicao"
+                  to={{ pathname: '/', hash: '#distribuicao' }}
                 >
                   Distribuição
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-qd-purple-700 underline-offset-2 hover:text-qd-green-700 hover:underline"
-                  href="/#diferenciais"
+                  to={{ pathname: '/', hash: '#diferenciais' }}
                 >
                   Por que a Q Delícia
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
